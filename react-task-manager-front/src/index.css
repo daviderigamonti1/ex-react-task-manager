@@ -1,0 +1,39 @@
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #f9fafb;
+  color: #333;
+}
+
+nav {
+  background-color: #4f46e5;
+  /* Viola carino */
+  padding: 1rem 2rem;
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.1rem;
+  transition: color 0.3s ease;
+}
+
+nav a.active {
+  border-bottom: 2px solid white;
+}
+
+nav a:hover {
+  color: #c7d2fe;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 3rem;
+  font-size: 2rem;
+  color: #374151;
+}
