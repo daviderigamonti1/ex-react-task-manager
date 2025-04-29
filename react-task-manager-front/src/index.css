@@ -37,3 +37,58 @@ h1 {
   font-size: 2rem;
   color: #374151;
 }
+
+/* Tabella */
+
+table {
+  width: 80%;
+  margin: 2rem auto;
+  border-collapse: collapse;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Intestazione della tabella */
+thead {
+  background-color: #4f46e5;
+  /* Viola */
+  color: white;
+}
+
+/* Celle dell'intestazione */
+th {
+  padding: 1rem;
+  text-align: center;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+}
+
+/* Corpo della tabella */
+tbody tr {
+  transition: background-color 0.3s ease;
+}
+
+/* Righe alternate */
+tbody tr:nth-child(even) {
+  background-color: #f9fafb;
+}
+
+/* Hover sulla riga */
+tbody tr:hover {
+  background-color: #e0e7ff;
+}
+
+/* Celle del corpo */
+td {
+  padding: 1rem;
+  text-align: center;
+  border-top: 1px solid #e5e7eb;
+  font-size: 0.95rem;
+}
+
+/* Emoji "✅" o "❌" */
+td:last-child {
+  font-size: 1.2rem;
+}
