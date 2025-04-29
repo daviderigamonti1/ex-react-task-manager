@@ -1,4 +1,5 @@
-import { useState, useRef, useMemo } from "react";
+import { useState, useRef, useMemo, useContext } from "react";
+import { GlobalContext } from "../context/GlobalContext";
 
 const symbols = "!@#$%^&*()-_=+[]{}|;:'\",.<>?/`~";
 
@@ -9,6 +10,8 @@ export default function AddTask() {
     const descriptionRef = useRef();
     const statusRef = useRef();
 
+    const { addTask } = useContext(GlobalContext);
+
     const taskTitleError = useMemo(() => {
         if (!taskTitle.trim())
             return "Inserire il nome della task."
@@ -17,7 +20,7 @@ export default function AddTask() {
         return "";
     }, [taskTitle]);
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault();
         if (taskTitleError) {
             setError(taskTitleError);
@@ -29,7 +32,15 @@ export default function AddTask() {
             description: descriptionRef.current.value,
             status: statusRef.current.value
         }
-        console.log(newTask);
+        try {
+            await addTask(newTask);
+            alert("Task creata con successo.");
+            setTaskTitle("");
+            descriptionRef.current.value = "";
+            statusRef.current.value = "";
+        } catch (err) {
+            alert(err.message);
+        }
     }
 
     return (
@@ -65,3 +76,4 @@ export default function AddTask() {
         </div>
     )
 }
+

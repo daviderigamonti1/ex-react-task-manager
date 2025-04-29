@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 const { VITE_API_URL } = import.meta.env;
 
 export default function useTasks() {
@@ -11,8 +11,16 @@ export default function useTasks() {
             .catch(err => console.error(err));
     }, []);
 
-    const addTask = (newTask) => {
+    const addTask = async newTask => {
+        const response = await fetch(`${VITE_API_URL}/tasks`, {
+            method: 'POST',
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(newTask)
+        });
+        const { success, message, task } = await response.json();
+        if (!success) throw new Error(message);
 
+        setTasks(prev => [...prev, task])
     }
 
     const removeTask = (taskId) => {
