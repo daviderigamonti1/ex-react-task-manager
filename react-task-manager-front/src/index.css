@@ -160,7 +160,7 @@ td {
 
 .task-detail-card {
   background-color: #ffffff;
-  padding: 2rem;
+  padding: 0 2rem 2rem 2rem;
   border-radius: 1rem;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
   max-width: 600px;
@@ -203,4 +203,68 @@ td {
   color: #d32f2f;
   font-size: 1.5rem;
   margin-top: 5rem;
+}
+
+/* Modale */
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 500px;
+}
+
+.modal h2 {
+  margin-top: 0;
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.modal-actions button {
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+}
+
+.modal-actions button:first-of-type {
+  background-color: #e0e0e0;
+  color: #333;
+}
+
+.modal-actions button:first-of-type:hover {
+  background-color: #d5d5d5;
+}
+
+.modal-actions button:last-of-type {
+  background-color: #007bff;
+  color: white;
+}
+
+.modal-actions button:last-of-type:hover {
+  background-color: #005ecb;
 }
