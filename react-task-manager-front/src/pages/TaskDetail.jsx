@@ -1,15 +1,27 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { GlobalContext } from "../context/GlobalContext";
 
 export default function TaskDetail() {
     const { id } = useParams();
-    const { tasks } = useContext(GlobalContext);
+    const navigate = useNavigate();
+    const { tasks, removeTask } = useContext(GlobalContext);
 
     const task = tasks.find(t => t.id === parseInt(id));
 
     if (!task) {
         return <h2 className="task-not-found">Task non trovata.</h2>
+    }
+
+    const handleDelete = async () => {
+        try {
+            await removeTask(task.id);
+            alert("Task eliminata con succeso.");
+            navigate("/");
+        } catch (err) {
+            console.error(err);
+            alert(err.message);
+        }
     }
 
     return (
@@ -22,7 +34,7 @@ export default function TaskDetail() {
                     <p><strong>Stato:</strong> {task.status}</p>
                     <p><strong>Data di Creazione:</strong> {new Date(task.createdAt).toLocaleDateString()}</p>
                 </div>
-                <button onClick={() => console.log("Elimino task", task.id)} className="delete-task-button">Elimina Task</button>
+                <button onClick={handleDelete} className="delete-task-button">Elimina Task</button>
             </div>
         </div>
     )
