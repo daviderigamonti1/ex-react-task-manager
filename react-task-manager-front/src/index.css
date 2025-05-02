@@ -182,7 +182,7 @@ td {
 }
 
 .delete-task-button {
-  margin-top: 2rem;
+  margin-top: 1rem;
   padding: 0.75rem 1.25rem;
   font-size: 1rem;
   background-color: #e74c3c;
@@ -196,6 +196,23 @@ td {
 
 .delete-task-button:hover {
   background-color: #c0392b;
+}
+
+.edit-task-button {
+  margin-top: 1rem;
+  padding: 0.75rem 1.25rem;
+  font-size: 1rem;
+  background-color: #4f46e5;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s ease;
+}
+
+.edit-task-button:hover {
+  background-color: #4338ca;
 }
 
 .task-not-found {
@@ -267,4 +284,13 @@ td {
 
 .modal-actions button:last-of-type:hover {
   background-color: #005ecb;
+}
+
+/* Modale per modifica task */
+
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  margin-top: 1rem;
 }
