@@ -60,6 +60,8 @@ th {
   text-align: center;
   font-size: 1rem;
   letter-spacing: 0.5px;
+  cursor: pointer;
+  user-select: none;
 }
 
 tbody tr {
@@ -79,6 +81,15 @@ td {
   text-align: center;
   border-top: 1px solid #e5e7eb;
   font-size: 0.95rem;
+}
+
+th:hover {
+  background-color: #4338ca;
+}
+
+.sort-icon {
+  margin-left: 0.4rem;
+  font-size: 0.9rem;
 }
 
 /* Form */
@@ -129,7 +140,7 @@ td {
 .form-button {
   padding: 0.75rem;
   font-size: 1rem;
-  background-color: #007bff;
+  background-color: #4f46e5;
   color: white;
   border: none;
   border-radius: 6px;
@@ -138,7 +149,7 @@ td {
 }
 
 .form-button:hover {
-  background-color: #0069d9;
+  background-color: #4338ca;
 }
 
 .form-error {
