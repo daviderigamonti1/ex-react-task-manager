@@ -92,6 +92,27 @@ th:hover {
   font-size: 0.9rem;
 }
 
+/* Searchbar */
+
+.search-input {
+  width: 80%;
+  max-width: 400px;
+  margin: 1rem auto 2rem auto;
+  display: block;
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.search-input:focus {
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+  outline: none;
+}
+
 /* Form */
 
 .form-container {
