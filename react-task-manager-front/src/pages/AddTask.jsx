@@ -37,7 +37,6 @@ export default function AddTask() {
             alert("Task creata con successo.");
             setTaskTitle("");
             descriptionRef.current.value = "";
-            statusRef.current.value = "";
         } catch (err) {
             alert(err.message);
         }

@@ -1,9 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const TaskRow = React.memo(({ task }) => {
+const TaskRow = React.memo(({ task, checked, onToggle }) => {
     return (
         <tr>
+            <td>
+                <input
+                    type="checkbox"
+                    checked={checked}
+                    onChange={() => onToggle(task.id)}
+                />
+            </td>
             <td><Link to={`/task/${task.id}`}>{task.title}</Link></td>
             <td style={{
                 background:
@@ -18,7 +25,7 @@ const TaskRow = React.memo(({ task }) => {
                 {task.status}
             </td>
             <td>{new Date(task.createdAt).toLocaleDateString()}</td>
-        </tr>
+        </tr >
     )
 })
 

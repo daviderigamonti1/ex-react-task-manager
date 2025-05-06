@@ -14,7 +14,7 @@ function debounce(callback, delay) {
 }
 
 const TaskList = React.memo(() => {
-    const { tasks } = useContext(GlobalContext);
+    const { tasks, removeMultipleTasks } = useContext(GlobalContext);
 
     const [searchQuery, setSearchQuery] = useState("");
     const debouncedSetSearchQuery = useCallback(
@@ -25,6 +25,29 @@ const TaskList = React.memo(() => {
     const [sortOrder, setSortOrder] = useState(1);
 
     const sortIcon = sortOrder === 1 ? "↓" : "↑";
+
+    const [selectedTaskIds, setSelectedTaskIds] = useState([]);
+    const toggleSelection = taskId => {
+        setSelectedTaskIds(prev => {
+            if (selectedTaskIds.includes(taskId)) {
+                return prev.filter(id => id !== taskId);
+            } else {
+                return [...prev, taskId];
+            }
+        })
+    }
+
+    const handleDeleteSelected = async () => {
+        try {
+            await removeMultipleTasks(selectedTaskIds);
+            alert("Task eliminate con successo!");
+            setSelectedTaskIds([]);
+        } catch (err) {
+            console.error(err);
+            alert(err.message)
+        }
+        removeMultipleTasks(selectedTaskIds);
+    }
 
     const handleSort = (field) => {
         if (sortBy === field) {
@@ -61,15 +84,23 @@ const TaskList = React.memo(() => {
     return (
         <>
             <h1>Lista delle Task</h1>
+
             <input
                 type="text"
                 onChange={e => debouncedSetSearchQuery(e.target.value)}
                 placeholder="Cerca una task..."
                 className="search-input"
             />
+
+            {selectedTaskIds.length > 0 && (
+                <button onClick={handleDeleteSelected} className="bulk-delete-button">
+                    Elimina Selezionate
+                </button>
+            )}
             <table>
                 <thead>
                     <tr>
+                        <th></th>
                         <th onClick={() => handleSort('title')}>
                             Nome {sortBy === "title" && <span className="sort-icon">{sortIcon}</span>}
                         </th>
@@ -83,7 +114,12 @@ const TaskList = React.memo(() => {
                 </thead>
                 <tbody>
                     {filteredAndSortedTask.map(task => (
-                        <TaskRow key={task.id} task={task} />
+                        <TaskRow
+                            key={task.id}
+                            task={task}
+                            checked={selectedTaskIds.includes(task.id)}
+                            onToggle={toggleSelection}
+                        />
                     ))}
                 </tbody>
             </table>
@@ -92,13 +128,3 @@ const TaskList = React.memo(() => {
 })
 
 export default TaskList;
-// Aggiungere il debounce per migliorare le prestazioni
-// Creare una funzione debounce con setTimeout() per ritardare l’aggiornamento di searchQuery.
-
-// Usare useCallback() per memorizzare la funzione di debounce e prevenire inutili ricalcoli.
-
-
-
-// 💡 Importante:
-// Il debounce non funziona bene sugli input controllati.
-// Rimuovere value dall’input, rendendolo non controllato, affinché il debounce possa funzionare correttamente.
