@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import dayjs from "dayjs";
 
 const TaskRow = React.memo(({ task, checked, onToggle }) => {
     return (
@@ -24,7 +25,7 @@ const TaskRow = React.memo(({ task, checked, onToggle }) => {
             }}>
                 {task.status}
             </td>
-            <td>{new Date(task.createdAt).toLocaleDateString()}</td>
+            <td>{dayjs(task.createdAt).format("DD/MM/YYYY")}</td>
         </tr >
     )
 })
